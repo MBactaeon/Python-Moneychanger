@@ -57,3 +57,30 @@ class BilleteraDivisa(object):
         return str(self.__Impuesto_pais)
     def get_historico(self):
         return self.__historico_dolar_of
+############################
+#Console test
+billetera = BilleteraDivisa(10000)
+desicion = input("Operación a realizar: '1' Comprar dólares | '2' Vender dólares:  ")
+while desicion == '1' or desicion == '2':
+    if desicion == '1':
+        print(billetera.get_ver_disp_pesos())
+        try:
+            print("Recuerde que se debitará un "+billetera.get_imp_pais()+"% adicional por el Impuesto P.A.I.S")
+            cant = input("Indique la cantidad de pesos a usar: ")
+            cant_compra = int(cant)
+            print(billetera.comp_oficial(cant_compra))
+        except:
+            print("La cantidad indicada es errónea")
+    elif desicion == '2':
+        print(billetera.get_ver_disp_dolar())
+        cant = input("Indique la cantidad de dólares a usar: ")       
+        try:
+            cant_venta = int(cant)
+            print(billetera.vend_oficial(cant_venta))
+        except:
+            print("La cantidad indicada es errónea")
+    desicion = input("Operación a realizar: '1' Comprar dólares | '2' Vender dólares:  ")
+
+print("Historico de Operatoria: ")
+for oper in billetera.get_historico():
+    print(oper)
